@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+
+    # postgres Server
+    db:
+        image: postgres
+        restart: always
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        container_name: backend-db
+
+    # Web Server
+    web:
+        build:
+            context: ./server
+        environment: 
+            - SECRET_KEY=${SECRET_KEY}
+
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - ./server/src:/app
+        ports:
+            - "8000:8000"
+        container_name: web-serv
+        depends_on:
+            - db
