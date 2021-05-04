@@ -26,6 +26,7 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 try:
     SECRET_KEY = os.environ['SECRET_KEY']
+    assert len(SECRET_KEY), "SECRET_KEY EMPTY"
 except Exception as e:
     print('SECRET_KEY not found')
 
