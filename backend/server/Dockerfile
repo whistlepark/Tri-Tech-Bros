@@ -15,7 +15,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # docker on ports:
-EXPOSE 8000
+EXPOSE 6000
 
 # Start server
 CMD ["python", "manage.py"]

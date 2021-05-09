@@ -33,7 +33,7 @@ except Exception as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['143.198.128.137']
 
 
 # Application definition

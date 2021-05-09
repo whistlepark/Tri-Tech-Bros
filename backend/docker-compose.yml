@@ -17,11 +17,11 @@ services:
         build:
             context: ./server
 
-        command: python manage.py runserver 0.0.0.0:8000
+        command: python manage.py runserver 0.0.0.0:6000
         volumes:
             - ./server/src:/app
         ports:
-            - "8000:8000"
+            - "80:6000"
         container_name: web-serv
         depends_on:
             - db
