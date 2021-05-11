@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charest="utf-8">
+    <link rel="stylesheet" href="{% static 'index/css/index.css' %}">
+    <script src="{% static 'index/js/index.js' %}"></script>
+    <title>{% block title %} {% endblock %}</title>
+     <div class="topnav">
+          <a class="active" href="#Alerts" style="width:15%">Alerts</a>
+          <a href="#24/7" style="width:15%">24/7</a>
+          <a href="https://codepen.io/bfgustaf/pen/jOVRmEq" style="width:15%">Devices</a>
+          <a href="#Automation" style="width:15%">Automation</a>
+          <a href="#about" style="width:15%">Settings</a>
+    </div>
+</head>
+<body>
+<iframe src="https://www.gradescope.com/" width="400" height="200"></iframe>
+
+<embed type="application/x-vlc-plugin" pluginspage="http://www.videolan.org" target="
+rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov" />
+
+<OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921"
+     codebase="http://downloads.videolan.org/pub/videolan/vlc/latest/win32/axvlc.cab"
+     width="640" height="480" id="vlc" events="True">
+   <param name="Src" value="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov" />
+   <param name="ShowDisplay" value="True" />
+   <param name="AutoLoop" value="False" />
+   <param name="AutoPlay" value="True" />
+   <embed id="vlcEmb"  type="application/x-google-vlc-plugin" version="VideoLAN.VLCPlugin.2" autoplay="yes" loop="no" width="640" height="480"
+     target="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov" ></embed>
+</OBJECT>
+
+</body>
+</html>
