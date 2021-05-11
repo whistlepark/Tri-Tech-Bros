@@ -1,82 +1,71 @@
-/* Style the links inside the navigation bar /
-
-
-/
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
- /
-
-
-/ Change the color of links on hover /
-
-.topnav ul li a:hover {
-    background-color: #ddd;
+.topnav ul li:hover {
+    background-color: rgb(56, 147, 252);
     color: black;
 }
 
 
-/ Add a color to the active/current link /
+/* Add a color to the active/current link */
 
-.topnav ul li a.active {
+.topnav ul li.active {
     background-color: black;
-    color: white;
+    color: rgb(81, 115, 226);
 }
 
-iframe {
-    /     position: fixed; /
+
+/* iframe {
     background: #000;
     border: none;
-    top: 10%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 5%;
-    width: 90%;
-    /     height: 100%; */
-/* } */
-
-#nodered {
-    text-align: center;
-    height: 100%;
     width: 100%;
+    height: 90%;
     position: fixed;
+} */
+
+#video {
+    padding-top: 20px;
+}
+
+#video iframe {
+    width: 100%;
+    height: 50vw;
+    display: block;
 }
 
 .topnav {
     background-color: rgb(34, 77, 92);
     display: block;
     text-align: center;
+    position: relative;
+    height: 10%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .topnav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     list-style: none;
     text-decoration: none;
-    padding: 5px;
     margin: 0;
-    height: 100%;
+    /* width: 100%; */
+    padding: 0;
+    padding: 2vw;
 }
 
 .topnav ul li {
-    display: inline-block;
     list-style: none;
     text-decoration: none;
-    width: 15%;
+    /* margin: 10px; */
+    width: 100%;
     height: 100%;
 }
 
 .topnav ul li a {
     list-style: none;
     text-decoration: none;
-    display: block;
-    width: 100%;
-    text-align: center;
     height: 100%;
-    font-size: 40px;
+    width: 100%;
+    font-size: 30px;
+    font-size: 2vw;
     color: white;
 }
