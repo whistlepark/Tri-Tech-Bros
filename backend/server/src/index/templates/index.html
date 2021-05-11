@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% block head %}
 <head>
     <meta charest="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,14 @@
         <li><a class="nav-item" href="#Alerts">Alerts</a></li>
         <li><a class="nav-item" href="#24/7">24/7</a></li>
         <li> <a class="nav-item" href="#Devices">Devices</a></li>
-        <li><a class="nav-item" href="#Automation">Automation</a></li>
+        <li><a class="nav-item" href="/automation">Automation</a></li>
         <li><a class="nav-item" href="#about">Settings</a></li>
     </ul>
 </div>
      </head>
+{% endblock %}
+
+{% block body %}
 <body>
    <!-- <iframe src="https://codepen.io/bfgustaf/pen/ZEebBpN" width="400" height="200"></iframe> -->
 
@@ -25,5 +29,6 @@
 
     <iframe src="https://rtsp.me/embed/KHny8FKr/" frameborder="0" allowfullscreen></iframe>
 </body>
+{% endblock %}
  
 </html>
