@@ -11,8 +11,11 @@ WORKDIR /app
 COPY ./src/requirements.txt /app/
 
 # install req's
+RUN apt-get update
+RUN apt-get install -y libgl1-mesa-dev
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
 
 # docker on ports:
 EXPOSE 6000

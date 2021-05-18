@@ -10,4 +10,4 @@ def index(request):
 
 
 def videoFeed(request):
-    return StreamingHttpResponse(lambda r: gen(VideoCamera()),content_type='multipart/x-mixed-replace; boundary=frame')
+    return StreamingHttpResponse(gen(VideoCamera()),content_type='multipart/x-mixed-replace; boundary=frame')
