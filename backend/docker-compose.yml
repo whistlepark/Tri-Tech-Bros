@@ -25,3 +25,18 @@ services:
         container_name: web-serv
         depends_on:
             - db
+    node-red:
+        build:
+            context: ./nodered
+        ports:
+            - "1880:1880"
+        networks:
+            - node-red-net
+        volumes:
+            - node-red-data:/data
+volumes:
+    node-red-data:
+
+networks:
+    node-red-net:
+
