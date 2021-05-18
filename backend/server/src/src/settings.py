@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'oauth_app',
+    'camera',
     'index.apps.IndexConfig',
     'automation.apps.AutomationConfig',
     'allauth',
