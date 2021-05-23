@@ -16,6 +16,7 @@
 
 <body>
     {% block body %}
+    {% if user.is_authenticated %}
     <div class="topnav">
         <ul>
             <li><a class="nav-item" href="#Alerts">Alerts</a></li>
@@ -31,6 +32,9 @@
         <video src="{% url 'webcam' %}"></video>
 
     </div>
+    {% else %}
+        <a href="{% provider_login_url 'google' %}">Login WIth Google</a>
+    {% endif %}
     {% endblock %}
 </body>
 
