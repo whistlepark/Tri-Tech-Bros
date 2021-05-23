@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load socialaccount %}
+{% load static %}
 <head>
+    {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Security </title>
-    <link rel="stylesheet" href="index.css">
+    <title>{% block title %} Home Security {% endblock %}</title>
+    <link rel="stylesheet" href="{% static '/index/css/index.css' %}">
+    {% endblock %}
 </head>
 
 
 
 
 <body>
-
+    {% block body %}
     <div class="topnav">
         <ul>
             <li><a class="nav-item" href="#Alerts">Alerts</a></li>
@@ -28,7 +31,7 @@
         <video src="{% url 'webcam' %}"></video>
 
     </div>
-
+    {% endblock %}
 </body>
 
 
