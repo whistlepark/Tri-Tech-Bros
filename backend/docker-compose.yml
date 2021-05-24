@@ -18,6 +18,8 @@ services:
             context: ./server
 
         command: python manage.py runserver 0.0.0.0:6000
+        devices:
+            - /dev/video0:/dev/video0
         volumes:
             - ./server/src:/app
         ports:
