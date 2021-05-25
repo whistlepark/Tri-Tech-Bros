@@ -9,16 +9,16 @@
     <title>{% block title %} Devices {% endblock %} </title>
 
     {% block body %}
-        <div>
-            <form class="form_holder" action="/devices" method="post">
+        <div class="form_holder">
+            <form  action="/devices" method="post">
             {% csrf_token %}
             {{ form }}
             <input type="submit" value="Add Device">
             </form>
         </div>
         <div>
-            <h1>Cameras</h1>
             {% if cams %}
+            <h1>Cameras</h1>
                 {% for cam in cams %}
                     <p> cam.IP </p>
                 {% endfor %}
