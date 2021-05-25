@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'camera/css/camera.css' %}">
+    </head>
+    <title>{% block title %} Devices {% endblock %} </title>
+
+    {% block body %}
+        <div>
+            <form class="form_holder" action="/devices" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Add Device">
+            </form>
+        </div>
+        <div>
+            <h1>Cameras</h1>
+            {% if cams %}
+                {% for cam in cams %}
+                    <p> cam.IP </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endblock %}
+
+</html>
+
