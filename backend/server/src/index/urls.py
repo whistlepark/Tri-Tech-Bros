@@ -19,5 +19,5 @@ from index import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('webcam', views.videoFeed, name='webcam'),
+
 ]

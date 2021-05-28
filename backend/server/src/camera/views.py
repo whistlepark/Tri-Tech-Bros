@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from camera.models import IPCamera
 from camera.forms import IPCameraForm
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponse
+from camera import camera
 
 def devices(request):
     if request.method == "POST":
@@ -13,3 +14,7 @@ def devices(request):
         cams = IPCamera.objects.all()
 
     return render(request,'devices.html',context={'cams':cams,'form':form})
+
+def record():
+    #Video streaming route. Put this in the src attribute of an img tag
+    return HttpResponse(camera.gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')

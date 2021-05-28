@@ -18,15 +18,15 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView
 from django.http import StreamingHttpResponse
-from camera.camera import VideoCamera,gen
+from camera.camera import gen_frames
 
 urlpatterns = [
-    path('', include('index.urls'),name='home'), 
+    path('', include('index.urls'),name='home'),
     path('admin/', admin.site.urls, name='admin'),
     path('index/', include('index.urls')),
     path('devices/',include('camera.urls')),
     path('accounts/',include('allauth.urls')),
     path('automation/', include('automation.urls')),
     path('logout/', LogoutView.as_view()),
-    path('monitor/', lambda r: StreamingHttpResponse(gen(VideoCamera()),content_type='multipart/x-mixed-replace; boundary=frame'),name='monitor'),
+    path('monitor/', lambda r: StreamingHttpResponse(gen_frames(),content_type='multipart/x-mixed-replace; boundary=frame'),name='monitor'),
 ]

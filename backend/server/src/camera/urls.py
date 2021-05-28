@@ -19,4 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.devices, name='devices'),
+    path('record', views.record, name='record')
 ]
