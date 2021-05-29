@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% load static %}
+{% load camera_extras %}
 <!DOCTYPE html>
 <html>
 
@@ -10,17 +11,23 @@
 
     {% block body %}
         <div class="form_holder">
-            <form  action="/devices" method="post">
+            <form  action="/devices/" method="post">
             {% csrf_token %}
             {{ form }}
             <input type="submit" value="Add Device">
             </form>
         </div>
         <div>
-            {% if cams %}
+            {% if cams|length > 0 %}
             <h1>Cameras</h1>
                 {% for cam in cams %}
-                    <p> cam.IP </p>
+                <div class="stream_holder">
+                <p> {{ cam.pk|prepend:"monitor" }}</p>
+                <form action="{{ cam.pk|prepend:"/devices/" }}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" id={{ cam.pk }} value="Record">
+                </form>
+                </div>
                 {% endfor %}
             {% endif %}
         </div>

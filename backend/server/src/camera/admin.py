@@ -1,3 +1,5 @@
 from django.contrib import admin
+from camera.models import IPCamera
 
-# Register your models here.
+admin.site.register(IPCamera)
+
