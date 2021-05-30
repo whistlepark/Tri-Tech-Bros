@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'camera.apps.CameraConfig',
+    'settings.apps.SettingsConfig',
     'index.apps.IndexConfig',
     'automation.apps.AutomationConfig',
     'allauth',

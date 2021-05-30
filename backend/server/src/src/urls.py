@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('index/', include('index.urls')),
     path('devices/',include('camera.urls')),
+    path('settings/',include('settings.urls')),
     path('accounts/',include('allauth.urls')),
     path('automation/', include('automation.urls')),
     path('logout/', LogoutView.as_view()),
