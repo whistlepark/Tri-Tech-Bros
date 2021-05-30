@@ -28,5 +28,5 @@ urlpatterns = [
     path('accounts/',include('allauth.urls')),
     path('automation/', include('automation.urls')),
     path('logout/', LogoutView.as_view()),
-    path('monitor/', lambda r: StreamingHttpResponse(gen_frames(),content_type='multipart/x-mixed-replace; boundary=frame'),name='monitor'),
+#    path('monitor/<int:pk>', lambda pk: StreamingHttpResponse(gen_frames(pk),content_type='multipart/x-mixed-replace; boundary=frame'),name='monitor_pk'),
 ]

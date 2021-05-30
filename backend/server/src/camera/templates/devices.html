@@ -22,7 +22,7 @@
             <h1>Cameras</h1>
                 {% for cam in cams %}
                 <div class="stream_holder">
-                <p> {{ cam.pk|prepend:"monitor" }}</p>
+                <p> {{ cam.pk|prepend:"monitor/" }}</p>
                 <form action="{{ cam.pk|prepend:"/devices/" }}" method="POST">
                     {% csrf_token %}
                     <input type="submit" id={{ cam.pk }} value="Record">

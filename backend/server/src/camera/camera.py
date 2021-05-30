@@ -1,4 +1,6 @@
 import cv2
+from camera.models import IPCamera
+import datetime as dt
 
 
 # # dirname = videos
@@ -15,18 +17,20 @@ record = False
 
 
 
-def gen_frames(record = False):  # generate frame by frame from camera
-    camera = cv2.VideoCapture("rtsp://admin:TriTechBr0s@209.65.187.212")
-    # i=0
+def gen_frames(pk,record = False):  # generate frame by frame from camera
+    camObj = IPCamera.objects.get(pk=pk)
+    camera = cv2.VideoCapture("rtsp://admin:TriTechBr0s@"+camObj.IP)
+    fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+    out = cv2.VideoWriter('/static/media/'+camObj.location+'/'+str(dt.date.today()),fourcc,20.0,(640,480))
     while True:
-        # i +=1
         # Capture frame-by-frame
         success, frame = camera.read()  # read the camera frame
         if not success:
             break
         else:
+            if record:
+                out.write(frame)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
-            # print(i)
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
