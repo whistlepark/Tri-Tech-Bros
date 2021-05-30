@@ -23,7 +23,7 @@
                 {% for cam in cams %}
                 <div class="stream_holder">
                     <img style="width:420px;height:360px;border:solid 1px;" src="{{ cam.pk|prepend:"monitor/" }}">
-                    <form action="{{ cam.pk|prepend:"/devices/" }}" method="POST">
+                    <form action="{{ cam.pk|prepend:"record/" }}" method="POST">
                         {% csrf_token %}
                         <input type="submit" id={{ cam.pk }} value="Record">
                     </form>
