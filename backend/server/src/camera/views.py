@@ -36,3 +36,11 @@ def remove(request,pk):
         IPCamera.objects.filter(pk=pk).delete()
     return HttpResponsePermanentRedirect('/devices')
 
+def featured(request,pk):
+    if(request.method == "POST"):
+        camObj = IPCamera.objects.get(pk=pk)
+        camObj.featured = not camObj.featured
+        camObj.save()
+    return HttpResponsePermanentRedirect('/devices')
+
+
