@@ -23,4 +23,5 @@ urlpatterns = [
     path('monitor/<int:pk>', views.video_feed ,name='monitor_pk'),
     path('record', views.record, name='record'),
     path('remove/<int:pk>', views.remove ,name='remove'),
+    path('featured/<int:pk>', views.featured, name='featured'),
 ]

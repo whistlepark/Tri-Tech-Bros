@@ -31,6 +31,11 @@
                         {% csrf_token %}
                         <input type="submit" id="{{ cam.pk|prepend:"remove_" }}" value="Remove">
                     </form>
+                    <form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
+                        {% csrf_token %}
+                        <label for="{{ cam.pk|prepend:"featured_" }}" value="Featured">
+                        <input type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}" value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
+                    </form>
                 </div>
                 {% endfor %}
             {% endif %}
