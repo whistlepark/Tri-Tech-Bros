@@ -1,9 +1,9 @@
-Django>=3.0,<4.0
+Django
 requests
 django_compressor==2.2
 django-libsass==0.7
 django-allauth
 python-dotenv
-psycopg2
+psycopg2-binary
 opencv-python
 google-auth-oauthlib
