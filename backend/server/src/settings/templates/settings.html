@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+
+{% block body %}
+<!-- List of settings with toggle values -->
+
+<form href="">
+{% csrf_token %}
+{% for item in fields %}
+<label for="{{ item.key }}">{{ item.key }}</label>
+<input type="checkbox" id="{{ item.key }}" name="{{ item.key }}" value="{{ item.key }} {% if item.value %}checked {% else %} unchecked {% endif %}">
+{% endfor %} 
+</form>
+{% endblock %}

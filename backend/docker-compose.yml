@@ -23,5 +23,21 @@ services:
         ports:
             - "80:6000"
         container_name: web-serv
+        entrypoint: /entrypoint.sh
         depends_on:
             - db
+    node-red:
+        build:
+            context: ./nodered
+        ports:
+            - "1880:1880"
+        networks:
+            - node-red-net
+        volumes:
+            - node-red-data:/data
+volumes:
+    node-red-data:
+
+networks:
+    node-red-net:
+

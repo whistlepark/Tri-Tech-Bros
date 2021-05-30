@@ -15,19 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth.views import LogoutView
-from django.views.generic import TemplateView
-from django.http import StreamingHttpResponse
-from camera.camera import gen_frames
+from . import views
 
 urlpatterns = [
-    path('', include('index.urls'),name='home'),
-    path('admin/', admin.site.urls, name='admin'),
-    path('index/', include('index.urls')),
-    path('devices/',include('camera.urls')),
-    path('settings/',include('settings.urls')),
-    path('accounts/',include('allauth.urls')),
-    path('automation/', include('automation.urls')),
-    path('logout/', LogoutView.as_view()),
-#    path('monitor/<int:pk>', lambda pk: StreamingHttpResponse(gen_frames(pk),content_type='multipart/x-mixed-replace; boundary=frame'),name='monitor_pk'),
+    path('', views.devices, name='devices'),
+    path('<int:device_num>',views.devices),
+    path('monitor/<int:pk>', views.video_feed ,name='monitor_pk'),
+    path('record', views.record, name='record'),
+    path('remove/<int:pk>', views.remove ,name='remove'),
 ]
