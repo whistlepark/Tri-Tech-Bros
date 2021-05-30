@@ -21,5 +21,6 @@ urlpatterns = [
     path('', views.devices, name='devices'),
     path('<int:device_num>',views.devices),
     path('monitor/<int:pk>', views.video_feed ,name='monitor_pk'),
-    path('record', views.record, name='record')
+    path('record', views.record, name='record'),
+    path('remove/<int:pk>', views.remove ,name='remove'),
 ]
