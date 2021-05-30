@@ -37,25 +37,23 @@ def gen_frames(pk,record = False):  # generate frame by frame from camera
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
 
 
-
-
 # List of active recording videos
-recording_threads = {}
+camera_threads = {}
 
 def start_thread(pk):
     camObj = IPCamera.objects.get(pk=pk)
     video_stream_widget = RTSPVideoWriterObject(camObj)
-    recording_threads[pk] = video_stream_widget
+    camera_threads[pk] = video_stream_widget
 
 def stop_record(pk):
-    recording_threads[pk].record = False
+    camera_threads[pk].record = False
 
 def start_record(pk):
-    recording_threads[pk].record = True
+    camera_threads[pk].record = True
 
 def stop_thread(pk):
-    recording_threads[pk].run = False
-    del recording_threads[pk]
+    camera_threads[pk].run = False
+    del camera_threads[pk]
     
 class RTSPVideoWriterObject(object):
     def __init__(self, camObj, record):
