@@ -2,11 +2,21 @@ from django.shortcuts import render
 from django.http import HttpResponse, StreamingHttpResponse
 from django.shortcuts import render
 
+from camera.models import IPCamera
+from camera.forms import IPCameraForm
 from camera.camera import gen_frames
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html',context={})
+    if request.method == "POST":
+        form = IPCameraForm(request.POST)
+        if not form.is_valid():
+            return HttpResponseBadRequest()
+        form.save()
+
+    form = IPCameraForm()
+    cams = IPCamera.objects.all()
+    return render(request, 'index.html',context={'cams':cams})
 
 
 def video_feed(request):

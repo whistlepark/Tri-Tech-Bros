@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load socialaccount %} {% load static %} {% load index_extras %} {% url 'home' as home %} {% url 'devices' as devices %} {% url 'automation' as automation %}
-{% url 'settings' as settings %}
+{% load socialaccount %} {% load static %} {% load index_extras %} {% url 'home' as home %} {% url 'devices' as devices %} {% url 'automation' as automation %} {% url 'settings' as settings %} {% load camera_extras %}
 
 <head>
     {% block head %}
@@ -19,8 +18,7 @@
     <div class="topnav">
         <ul>
             <li><a class="nav-item {% active request home %}" href="/{{ home }}">Home</a></li>
-            <li><a class="nav-item" href="#Alerts">Alerts</a></li>
-            <li><a class="nav-item" href="#24/7">24/7</a></li>
+            <!-- <li><a class="nav-item" href="#Alerts">Alerts</a></li> -->
             <li> <a class="nav-item {% active request devices %}" href="{{ devices }}">Devices</a></li>
             <li><a class="nav-item {% active request devices %}" href="{{ automation }}">Automation</a></li>
             <li><a class="nav-item {% active request devices %}" href="{{ settings }}">Settings</a></li>
@@ -28,60 +26,42 @@
             <li><a class="nav-item" href="/logout">Logout</a></li>
             {% else %}
             <li><a href="{% provider_login_url 'google' %}">Login</a></li>
-            {% endif %} 
+            {% endif %}
         </ul>
     </div>
-    {% endblock %}
-    {% block body %} 
+    {% endblock %} {% block body %}
 
-    <!--
-    <img id="myVideo" style="width:420px;height:360px;border: solid 1px" src="{# % url 'monitor' % #}">
-    -->
-    {% endblock %}
+    <div class="viewBackground">
 
+        <div class="cameras">
+            <h1 id="camHead">Favorite Views</h1>
+            {% if cams|length > 0 %} {% for cam in cams %}
+            <div class="stream_holder">
+                <!-- we should add titles to each view -->
+                <h3>{{ cam.pk.id }}</h3>
+                <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
+                <img class="camView" src="{% static 'index/media/lol.png' %}">
+
+
+                <form action="{{ cam.pk|prepend:'devices/' }}" method="POST">
+                    {% csrf_token %}
+                    <input class="recordBtn" type="submit" id={{ cam.pk }} value="Record">
+                </form>
+            </div>
+            {% endfor %}{% endif %}
+        </div>
+    </div>
+
+    {% endblock %}
     <footer>
         <div class="footer-content">
             <h3>Tri-Tech Bros</h3>
         </div>
     </footer>
+
 </body>
 
-<script>
-    //Status constants
-    var SESSION_STATUS = Flashphoner.constants.SESSION_STATUS;
-    var STREAM_STATUS = Flashphoner.constants.STREAM_STATUS;
 
-    //Websocket session
-    var session;
-
-    //Init Flashphoner API on page load
-    function init_api() {
-        console.log("init api");
-        Flashphoner.init({});
-    }
-
-    //Connect to WCS server over websockets
-    function connect() {
-        session = Flashphoner.createSession({
-            urlServer: "wss://demo.flashphoner.com"
-        }).on(SESSION_STATUS.ESTABLISHED, function(session) {
-            console.log("connection established");
-            playStream(session);
-        });
-    }
-
-    //Playing stream with given name and mount the stream into myVideo div element
-    function playStream() {
-        var options = {
-            "rtsp://admin:TriTechBr0s@209.65.187.212",
-            display: document.getElementById("myVideo")
-        };
-        var stream = session.createStream(options).on(STREAM_STATUS.PLAYING, function(stream) {
-            console.log("playing");
-        });
-        stream.play();
-    }
-</script>
 
 
 </html>

@@ -24,7 +24,10 @@ def video_feed(request,pk):
 
 def record(request,pk):
     camObj = IPCamera.objects.get(pk=pk)
-    return HttpResponse(camera.start_record(pk), mimetype='multipart/x-mixed-replace; boundary=frame')
+    camObj.record = not camObj.record
+    camObj.save()
+    return HttpResponsePermanentRedirect('/devices')
+    return HttpResponse(camera.gen_frames(pk,record=True), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def stop_record(request, pk):
     camera.stop_record(pk)
