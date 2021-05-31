@@ -19,7 +19,25 @@
     <h1>Cameras</h1>
     {% for cam in cams %}
     <div class="stream_holder">
-        <img style="width:420px;height:360px;border:solid 1px;" src="{{ cam.pk|prepend:'monitor/' }}">
+        <img style="width:420px;height:360px;border:solid 1px;" src="{{ cam.pk|prepend:" monitor/ " }}">
+        <form action="{{ cam.pk|prepend:" record/ " }}" method="POST">
+            {% csrf_token %}
+            <input type="submit" id={{ cam.pk }} value="Record">
+        </form>
+        <form action="{{ cam.pk|prepend:" remove/ " }}" method="POST">
+            {% csrf_token %}
+            <input type="submit" id="{{ cam.pk|prepend:" remove_ " }}" value="Remove">
+        </form>
+        <form action="{{ cam.pk|prepend:" featured/ " }}" method="POST">
+            {% csrf_token %}
+            <label for="{{ cam.pk|prepend:" featured_ " }}" value="Featured">
+                        <input type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}" value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
+                    </form>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endblock %}
 
         <form action="{{ cam.pk|prepend:" /devices/ " }}" method="POST">
             {% csrf_token %}

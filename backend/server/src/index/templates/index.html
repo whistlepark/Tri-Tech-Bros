@@ -27,13 +27,10 @@
             <li><a class="nav-item" href="/logout">Logout</a></li>
             {% else %}
             <li><a href="{% provider_login_url 'google' %}">Login</a></li>
-            {% endif %} {% endblock %}
+            {% endif %}
         </ul>
     </div>
-
-
-
-    {% block body %}
+    {% endblock %} {% block body %} {% block body %}
     <h1>Cameras</h1>
     <div style="display: flex; flex-wrap:wrap; flex-direction:row; width:50%">
         {% if cams|length > 0 %} {% for cam in cams %}
