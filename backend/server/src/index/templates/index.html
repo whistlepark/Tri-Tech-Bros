@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load socialaccount %} {% load static %} {% load index_extras %} {% url 'home' as home %} {% url 'devices' as devices %} {% url 'automation' as automation %}
-{% url 'settings' as settings %}
+{% load socialaccount %} {% load static %} {% load index_extras %} {% url 'home' as home %} {% url 'devices' as devices %} {% url 'automation' as automation %} {% url 'settings' as settings %} {% load camera_extras %}
 
 <head>
     {% block head %}
@@ -32,11 +31,22 @@
         </ul>
     </div>
 
-    {% block body %} 
 
-    <!--
-    <img id="myVideo" style="width:420px;height:360px;border: solid 1px" src="{# % url 'monitor' % #}">
-    -->
+
+    {% block body %}
+    <h1>Cameras</h1>
+    <div style="display: flex; flex-wrap:wrap; flex-direction:row; width:50%">
+        {% if cams|length > 0 %} {% for cam in cams %}
+        <div="stream_holder" style="margin:1em; width:50%">
+            <img style="width:720px;height:420px;border:solid 1px; " src="{{ cam.pk|prepend:'devices/monitor/' }}">
+
+            <form action="{{ cam.pk|prepend:'devices/' }}" method="POST">
+                {% csrf_token %}
+                <input type="submit" id={{ cam.pk }} value="Record">
+            </form>
+    </div>
+    {% endfor %}{% endif %}
+    </div>
     {% endblock %}
 
     <footer>

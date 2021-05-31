@@ -1,41 +1,33 @@
-{% extends "index.html" %}
-{% load static %}
-{% load camera_extras %}
+{% extends "index.html" %} {% load static %} {% load camera_extras %}
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'camera/css/camera.css' %}">
-    </head>
-    <title>{% block title %} Devices {% endblock %} </title>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'camera/css/camera.css' %}">
+</head>
+<title>{% block title %} Devices {% endblock %} </title>
 
-    {% block body %}
-        <div class="form_holder">
-            <form  action="/devices/" method="post">
+{% block body %}
+<div class="form_holder">
+    <form action="/devices/" method="post">
+        {% csrf_token %} {{ form }}
+        <input type="submit" value="Add Device">
+    </form>
+</div>
+<div>
+    {% if cams|length > 0 %}
+    <h1>Cameras</h1>
+    {% for cam in cams %}
+    <div class="stream_holder">
+        <img style="width:420px;height:360px;border:solid 1px;" src="{{ cam.pk|prepend:'monitor/' }}">
+
+        <form action="{{ cam.pk|prepend:" /devices/ " }}" method="POST">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Add Device">
-            </form>
-        </div>
-        <div>
-            {% if cams|length > 0 %}
-            <h1>Cameras</h1>
-                {% for cam in cams %}
-                <div class="stream_holder">
-                    <img style="width:420px;height:360px;border:solid 1px;" src="{{ cam.pk|prepend:"monitor/" }}">
-                    <form action="{{ cam.pk|prepend:"/devices/" }}" method="POST">
-                        {% csrf_token %}
-                        <input type="submit" id={{ cam.pk }} value="Record">
-                    </form>
-                    <form action="{{ cam.pk|prepend:"remove/" }}" method="POST">
-                        {% csrf_token %}
-                        <input type="submit" id="{{ cam.pk|prepend:"remove_" }}" value="Remove">
-                    </form>
-                </div>
-                {% endfor %}
-            {% endif %}
-        </div>
-    {% endblock %}
+            <input type="submit" id={{ cam.pk }} value="Record">
+        </form>
+    </div>
+    {% endfor %} {% endif %}
+</div>
+{% endblock %}
 
 </html>
-
