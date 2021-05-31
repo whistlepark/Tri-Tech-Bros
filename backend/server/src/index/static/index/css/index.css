@@ -1,25 +1,23 @@
-html{
-    --primaryColor: rgb(34,77,92);
-    --secondaryColor: rgb(81,115,226);
+html {
+    --primaryColor: rgb(34, 77, 92);
+    --secondaryColor: rgb(81, 115, 226);
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-footer{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:60px;
-    background:var(--primaryColor);
-    color:white;
-}
-.footer-content{
-    border-radius:10px;
-    padding-left:5em;
+footer {
+    margin: auto;
+    width: 80%;
+    background: #C6CFDB;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    text-align: center;
 }
 
-.topnav ul li:hover {
-    background-color: rgb(56, 147, 252);
-    color: black;
+.footer-content {
+    border-radius: 10px;
+    padding-left: 5em;
 }
 
 
@@ -50,25 +48,24 @@ footer{
 }
 
 .topnav {
-    background-color: rgb(34, 77, 92);
+    background-color: #C6CFDB;
     display: block;
     text-align: center;
     position: relative;
-    height: 10%;
-    width: 100%;
-    border-radius: 5px;
+    width: 90%;
+    border-radius: 3em;
+    margin: auto;
+    margin-top: 3em;
 }
 
 .topnav ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style: none;
     text-decoration: none;
-    margin: 0;
-    /* width: 100%; */
-    padding: 0;
-    padding: 2vw;
+    padding: 1vw;
+    text-align: center;
 }
 
 .topnav ul li {
@@ -84,22 +81,77 @@ footer{
     text-decoration: none;
     height: 100%;
     width: 100%;
-    font-size: 30px;
     font-size: 2vw;
-    color: white;
-}
-.form_holder{
-align-content:center;
-align-self:center;
-min-width:350px;
-max-width:450px;
-width:40vw;
-padding:2rem;
+    color: rgb(34, 77, 92);
+    font-weight: bold;
 }
 
-.form_holder input{
+.form_holder {
+    align-content: center;
+    align-self: center;
+    min-width: 350px;
+    max-width: 450px;
+    width: 40vw;
+    padding: 2rem;
+}
+
+.form_holder input {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: .5em;
 }
 
+.cameras {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* background-color: aquamarine; */
+    width: 80%;
+}
+
+.camView {
+    width: 35vh;
+    height: 20vh;
+    /* border-radius: 50px; */
+    margin: 2.5em 0em 1em 0em;
+}
+
+h1 {
+    display: block;
+    margin-left: 1em;
+    width: 100%;
+}
+
+.stream_holder {
+    margin: 2em;
+    background-color: #C6CFDB;
+    border-radius: 1em;
+    -webkit-box-shadow: 0px 7px 8px 3px rgba(0, 0, 0, 0.65);
+    box-shadow: 0px 7px 8px 3px rgba(0, 0, 0, 0.65);
+}
+
+.viewBackground {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.recordBtn {
+    background: red;
+    color: white;
+    border-radius: 3em;
+    font-weight: bold;
+    border-color: bisque;
+    width: 10em;
+    height: 5em;
+    font-size: .75em;
+    margin: auto;
+    display: block;
+    margin-bottom: 1em;
+}
+
+body {
+    height: 100%;
+}

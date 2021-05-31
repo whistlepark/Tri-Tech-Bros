@@ -14,12 +14,12 @@
         <input type="submit" value="Add Device">
     </form>
 </div>
-<div>
-    {% if cams|length > 0 %}
-    <h1>Cameras</h1>
-    {% for cam in cams %}
+<div class="cameras">
+    <h1>All Cameras</h1>
+    {% if cams|length > 0 %} {% for cam in cams %}
     <div class="stream_holder">
-        <img style="width:420px;height:360px;border:solid 1px;" src="{{ cam.pk|prepend:" monitor/ " }}">
+        <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
+        <img class="camView" src="{% static 'camera/media/lol.png' %}">
         <form action="{{ cam.pk|prepend:" record/ " }}" method="POST">
             {% csrf_token %}
             <input type="submit" id={{ cam.pk }} value="Record">
@@ -37,14 +37,12 @@
                 {% endfor %}
             {% endif %}
         </div>
-    {% endblock %}
 
         <form action="{{ cam.pk|prepend:" /devices/ " }}" method="POST">
             {% csrf_token %}
             <input type="submit" id={{ cam.pk }} value="Record">
         </form>
     </div>
-    {% endfor %} {% endif %}
 </div>
 {% endblock %}
 
