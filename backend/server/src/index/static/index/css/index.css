@@ -1,8 +1,23 @@
+#addDevice {
+    align-content: center;
+    align-self: center;
+    min-width: 350px;
+    max-width: 450px;
+    width: 40vw;
+    padding: 2rem;
+}
+
+#addDevice input {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .5em;
+}
 html {
     --primaryColor: rgb(34, 77, 92);
     --secondaryColor: rgb(81, 115, 226);
     background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1vw;
 }
 
 footer {
@@ -55,7 +70,8 @@ footer {
     width: 90%;
     border-radius: 3em;
     margin: auto;
-    margin-top: 3em;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 .topnav ul {
@@ -82,7 +98,7 @@ footer {
     height: 100%;
     width: 100%;
     font-size: 2vw;
-    color: rgb(34, 77, 92);
+    color: #182848;
     font-weight: bold;
 }
 
@@ -105,16 +121,14 @@ footer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    /* background-color: aquamarine; */
-    width: 80%;
+    justify-content: center;
+    width: 100%;
 }
 
 .camView {
-    width: 35vh;
-    height: 20vh;
-    /* border-radius: 50px; */
-    margin: 2.5em 0em 1em 0em;
+    width: 26vh;
+    height: 16vh;
+    margin: 1em 0em 1em 0em;
 }
 
 h1 {
@@ -124,8 +138,8 @@ h1 {
 }
 
 .stream_holder {
-    margin: 2em;
-    background-color: #C6CFDB;
+    margin: 1em;
+    background-color: #182848;
     border-radius: 1em;
     -webkit-box-shadow: 0px 7px 8px 3px rgba(0, 0, 0, 0.65);
     box-shadow: 0px 7px 8px 3px rgba(0, 0, 0, 0.65);
@@ -136,7 +150,16 @@ h1 {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: #C6CFDB;
+    width: 85%;
+    margin: auto;
+    border-radius: 3em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1.5em;
+
 }
+
 
 .recordBtn {
     background: red;
@@ -154,4 +177,82 @@ h1 {
 
 body {
     height: 100%;
+}
+
+#addDeviceBtn{
+    width: 5vh;
+    height: 5vh;
+    padding: 0.25em 0.8em;
+    padding-top: 1vh;
+    margin-left: auto;
+}
+
+#addDevice{
+    background-color:  #C6CFDB;
+    border-radius: 2vh;
+    font-size: 2vh;
+}
+
+#diagBtns{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#camOptions{
+    display: flex;
+    width: 100%;
+    /*margin-bottom: 1em;*/
+    font-size:large;
+}
+
+.camName{
+    margin-top: 1.5vh;
+    margin-left: 1.5vh;
+    margin-bottom: 0%;
+    color: #C6CFDB;
+    font-size: 1.5vh;
+}
+
+#allCams{
+    width: 80%;
+    font-size: 3vh;
+    color: #182848;
+}
+
+.btnBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-bottom: 1em;
+}
+.btn{
+    background-color: #C6CFDB; /* Green */
+    border: none;
+    color: #192A49;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 1vw;
+    font-size: 1.2vw;
+    padding: .75em;
+}
+
+#weather{
+    width: 50%;
+    border-radius: 2vh;
+    margin: 1vh;
+    float: left;
+}
+
+.weatherwidget-io{
+    border-radius:1vh ;
+    padding: 1vh;
+}
+
+.btn:hover{
+    background-color:#A5587B;
 }

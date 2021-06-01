@@ -96,10 +96,11 @@ footer {
     text-decoration: none;
     height: 100%;
     width: 100%;
-    font-size: 3vh;
+    font-size: 2vw;
     color: #182848;
     font-weight: bold;
 }
+
 
 .form_holder {
     align-content: center;
@@ -236,10 +237,9 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius: 1vh;
-    font-size: 1.2vh;
-    padding: .75em;
-
+    border-radius: .5em;
+    font-size: 1rem;
+    padding: .7em;
 }
 
 .btn:hover{

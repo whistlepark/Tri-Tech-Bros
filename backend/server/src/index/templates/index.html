@@ -31,7 +31,13 @@
     </div>
     {% endblock %} {% block body %}
 
+
     <div class="viewBackground">
+        <h1>Welcome Back!</h1>
+        <div id="weather">
+            <a class="weatherwidget-io" href="https://forecast7.com/en/32d72n117d16/san-diego/" data-label_1="SAN DIEGO" data-label_2="WEATHER" data-font="Verdana" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#182848" >SAN DIEGO WEATHER</a>
+
+        </div>
 
         <div class="cameras">
             <h1 id="camHead">Favorite Views</h1>
@@ -47,7 +53,10 @@
 
                 <form action="{{ cam.pk|prepend:'devices/'}}" method="POST">
                     {% csrf_token %}
-                    <input class="recordBtn" type="submit" id={{ cam.pk }} value="Record">
+                    <div class="btnBar">
+                        <input class="btn" type="submit" id={{ cam.pk }} value="Record">
+                    </div>
+
                 </form>
             </div>
             {% endif %}{% endfor %}{% endif %}
@@ -62,7 +71,9 @@
     </footer> -->
 
 </body>
-
+<script>
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
 
 
 
