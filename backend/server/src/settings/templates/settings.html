@@ -1,14 +1,34 @@
+{% extends "index.html" %} {% load static %} {% load camera_extras %}
 <!DOCTYPE html>
-{% extends "index.html" %}
+<html>
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'settings/css/settings.css' %}">
+    <title>{% block title %} Devices {% endblock %} </title>
+    {% endblock %}
+</head>
 
 {% block body %}
-<!-- List of settings with toggle values -->
 
-<form href="">
-{% csrf_token %}
-{% for item in fields %}
-<label for="{{ item.key }}">{{ item.key }}</label>
-<input type="checkbox" id="{{ item.key }}" name="{{ item.key }}" value="{{ item.key }} {% if item.value %}checked {% else %} unchecked {% endif %}">
-{% endfor %} 
-</form>
+
+
+<div class="viewBackground">
+	<form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
+		<label for="userId">User ID</label>
+  		<input type="text" id="userId" name="userId">
+
+	</form>
+</div>
+
+
+
+
 {% endblock %}
+
+
+
+
+</html>

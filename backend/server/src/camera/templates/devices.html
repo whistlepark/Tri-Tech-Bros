@@ -3,47 +3,80 @@
 <html>
 
 <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'camera/css/camera.css' %}">
+    <script type="text/javascript" src="{% static 'camera/js/devices.js' %}"></script>
+    <title>{% block title %} Devices {% endblock %} </title>
+    {% endblock %}
 </head>
-<title>{% block title %} Devices {% endblock %} </title>
 
 {% block body %}
-<div class="form_holder">
+
+<dialog id="addDevice">
     <form action="/devices/" method="post">
         {% csrf_token %} {{ form }}
-        <input type="submit" value="Add Device">
-    </form>
-</div>
-<div class="cameras">
-    <h1>All Cameras</h1>
-    {% if cams|length > 0 %} {% for cam in cams %}
-    <div class="stream_holder">
-        <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
-        <img class="camView" src="{% static 'camera/media/lol.png' %}">
-        <form action="{{ cam.pk|prepend:" record/ " }}" method="POST">
-            {% csrf_token %}
-            <input type="submit" id={{ cam.pk }} value="Record">
-        </form>
-        <form action="{{ cam.pk|prepend:" remove/ " }}" method="POST">
-            {% csrf_token %}
-            <input type="submit" id="{{ cam.pk|prepend:" remove_ " }}" value="Remove">
-        </form>
-        <form action="{{ cam.pk|prepend:" featured/ " }}" method="POST">
-            {% csrf_token %}
-            <label for="{{ cam.pk|prepend:" featured_ " }}" value="Featured">
-                        <input type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}" value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
-                    </form>
-                </div>
-                {% endfor %}
-            {% endif %}
+        <div id="diagBtns">
+            <input id="submit" type="submit" value="Add Device">
+            <input id="cancel" type="submit" value="cancel">
         </div>
 
-        <form action="{{ cam.pk|prepend:" /devices/ " }}" method="POST">
-            {% csrf_token %}
-            <input type="submit" id={{ cam.pk }} value="Record">
-        </form>
+    </form>
+</dialog>
+
+
+
+<div class="viewBackground">
+    <div id="camOptions">
+        <h3 id="allCams">All Cameras</h3>
+        <input id="addDeviceBtn" type="image" src="{% static 'camera/media/plus.png' %}"></input>
+    </div>
+
+
+    <div class="cameras">
+
+        {% if cams|length > 0 %} {% for cam in cams %}
+        <div class="stream_holder">
+            <h3 class="camName">{{ cam.location }}</h3>
+            <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
+            <img class="camView" src="{% static 'camera/media/lol.png' %}">
+            <div class="btnBar">
+                <!--<form  action="{{ cam.pk|prepend:"record/" }}" method="POST">
+                    {% csrf_token %}
+                    <input class="btn" type="submit" id={{ cam.pk }} value="Record">
+                </form>-->
+
+                <form action="{{ cam.pk|prepend:"remove/" }}" method="POST">
+                    {% csrf_token %}
+                    <input class="btn" type="submit" id="{{ cam.pk|prepend:"remove_" }}" value="Remove">
+                </form>
+
+
+                <form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
+                    {% csrf_token %}
+                    <label for="{{ cam.pk|prepend:"featured_" }}" value="Featured">
+                    <input class="btn" type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}"
+                            value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </div>
+
+
+
+
 {% endblock %}
+
+
+
 
 </html>

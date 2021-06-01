@@ -35,29 +35,31 @@
 
         <div class="cameras">
             <h1 id="camHead">Favorite Views</h1>
-            {% if cams|length > 0 %} {% for cam in cams %}
+            {% if cams|length > 0 %} {% for cam in cams %}{% if cam.featured %}
             <div class="stream_holder">
+
                 <!-- we should add titles to each view -->
-                <h3>{{ cam.pk.id }}</h3>
+                <h3 class="camName" >{{ cam.location }}</h3>
+
                 <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
                 <img class="camView" src="{% static 'index/media/lol.png' %}">
 
 
-                <form action="{{ cam.pk|prepend:'devices/' }}" method="POST">
+                <form action="{{ cam.pk|prepend:'devices/'}}" method="POST">
                     {% csrf_token %}
                     <input class="recordBtn" type="submit" id={{ cam.pk }} value="Record">
                 </form>
             </div>
-            {% endfor %}{% endif %}
+            {% endif %}{% endfor %}{% endif %}
         </div>
     </div>
 
     {% endblock %}
-    <footer>
+    <!-- <footer>
         <div class="footer-content">
             <h3>Tri-Tech Bros</h3>
         </div>
-    </footer>
+    </footer> -->
 
 </body>
 
