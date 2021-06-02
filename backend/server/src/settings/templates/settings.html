@@ -2,31 +2,31 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    {% block head %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'settings/css/settings.css' %}">
-    <title>{% block title %} Devices {% endblock %} </title>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'settings/css/settings.css' %}">
+        <title>{% block title %} Devices {% endblock %} </title>
+        {% endblock %}
+    </head>
+
+    {% block body %}
+
+
+
+    <div class="viewBackground">
+        <form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
+            <label for="userId">User ID</label>
+            <input type="text" id="userId" name="userId">
+
+        </form>
+    </div>
+
+
+
+
     {% endblock %}
-</head>
-
-{% block body %}
-
-
-
-<div class="viewBackground">
-	<form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
-		<label for="userId">User ID</label>
-  		<input type="text" id="userId" name="userId">
-
-	</form>
-</div>
-
-
-
-
-{% endblock %}
 
 
 

@@ -1,79 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load socialaccount %} {% load static %} {% load index_extras %} {% url 'home' as home %} {% url 'devices' as devices %} {% url 'automation' as automation %} {% url 'settings' as settings %} {% load camera_extras %}
+    {% load socialaccount %} {% load static %} {% load index_extras %} {% url 'home' as home %}
+    {% url 'devices' as devices %} {% url 'automation' as automation %} {% url 'settings' as settings %}
+    {% load camera_extras %}
 
-<head>
-    {% block head %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Home Security {% endblock %}</title>
-    <link rel="stylesheet" href="{% static '/index/css/index.css' %}"> {% endblock %}
-</head>
-
-
-
-
-<body>
-    {% block nav-bar %}
-    <div class="topnav">
-        <ul>
-            <li><a class="nav-item {% active request home %}" href="/{{ home }}">Home</a></li>
-            <!-- <li><a class="nav-item" href="#Alerts">Alerts</a></li> -->
-            <li> <a class="nav-item {% active request devices %}" href="{{ devices }}">Devices</a></li>
-            <li><a class="nav-item {% active request devices %}" href="{{ automation }}">Automation</a></li>
-            <li><a class="nav-item {% active request devices %}" href="{{ settings }}">Settings</a></li>
-            {% if user.is_authenticated %}
-            <li><a class="nav-item" href="/logout">Logout</a></li>
-            {% else %}
-            <li><a href="{% provider_login_url 'google' %}">Login</a></li>
-            {% endif %}
-        </ul>
-    </div>
-    {% endblock %} {% block body %}
+    <head>
+        {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %} Home Security {% endblock %}</title>
+        <link rel="stylesheet" href="{% static '/index/css/index.css' %}"> {% endblock %}
+    </head>
 
 
-    <div class="viewBackground">
-	    <h1>Welcome Back {{ user|title }}!</h1>
-        <div id="weather">
-            <a class="weatherwidget-io" href="https://forecast7.com/en/32d72n117d16/san-diego/" data-label_1="SAN DIEGO" data-label_2="WEATHER" data-font="Verdana" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#182848" >SAN DIEGO WEATHER</a>
 
+
+    <body>
+        {% block nav-bar %}
+        <div class="topnav">
+            <ul>
+                <li><a class="nav-item {% active request home %}" href="/{{ home }}">Home</a></li>
+                <!-- <li><a class="nav-item" href="#Alerts">Alerts</a></li> -->
+                <li> <a class="nav-item {% active request devices %}" href="{{ devices }}">Devices</a></li>
+                <li><a class="nav-item {% active request devices %}" href="{{ automation }}">Automation</a></li>
+                <li><a class="nav-item {% active request devices %}" href="{{ settings }}">Settings</a></li>
+                {% if user.is_authenticated %}
+                <li><a class="nav-item" href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="{% provider_login_url 'google' %}">Login</a></li>
+                {% endif %}
+            </ul>
         </div>
-
-        <div class="cameras">
-            <h1 id="camHead">Favorite Views</h1>
-            {% if cams|length > 0 %} {% for cam in cams %}{% if cam.featured %}
-            <div class="stream_holder">
-
-                <!-- we should add titles to each view -->
-                <h3 class="camName" >{{ cam.location }}</h3>
-
-                <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
-                <img class="camView" src="{% static 'index/media/lol.png' %}">
+        {% endblock %} {% block body %}
 
 
-                <form action="{{ cam.pk|prepend:'devices/'}}" method="POST">
-                    {% csrf_token %}
-                    <div class="btnBar">
-                        <input class="btn" type="submit" id={{ cam.pk }} value="Record">
-                    </div>
+        <div class="viewBackground">
+            <h1>Welcome Back {{ user|title }}!</h1>
+            <div id="weather">
+                <a class="weatherwidget-io" href="https://forecast7.com/en/32d72n117d16/san-diego/"
+                    data-label_1="SAN DIEGO" data-label_2="WEATHER" data-font="Verdana" data-icons="Climacons Animated"
+                    data-days="5" data-theme="original" data-basecolor="#182848">SAN DIEGO WEATHER</a>
 
-                </form>
             </div>
-            {% endif %}{% endfor %}{% endif %}
-        </div>
-    </div>
 
-    {% endblock %}
-    <footer>
-        <div class="footer-content">
-            <h3>Tri-Tech Bros</h3>
-        </div>
-    </footer>
+            <div class="cameras">
+                <h1 id="camHead">Favorite Views</h1>
+                {% if cams|length > 0 %} {% for cam in cams %}{% if cam.featured %}
+                <div class="stream_holder">
 
-</body>
-<script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-</script>
+                    <!-- we should add titles to each view -->
+                    <h3 class="camName">{{ cam.location }}</h3>
+
+                    <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
+                    <img class="camView" src="{% static 'index/media/lol.png' %}">
+
+
+                    <form action="{{ cam.pk|prepend:'devices/'}}" method="POST">
+                        {% csrf_token %}
+                        <div class="btnBar">
+                            <input class="btn" type="submit" id={{ cam.pk }} value="Record">
+                        </div>
+
+                    </form>
+                </div>
+                {% endif %}{% endfor %}{% endif %}
+            </div>
+        </div>
+
+        {% endblock %}
+        <footer>
+            <div class="footer-content">
+                <h3>Copyright © 2021 SolarCam. Designed under the &#xU+1F31E</h3>
+            </div>
+        </footer>
+
+    </body>
+    <script>
+        !function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0]; if(!d.getElementById(id)) {js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs);} }(document, 'script', 'weatherwidget-io-js');
+    </script>
 
 
 
