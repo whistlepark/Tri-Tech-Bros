@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, StreamingHttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from camera.models import IPCamera
 from camera.forms import IPCameraForm
 from camera.camera import gen_frames
 
-# Create your views here.
+@login_required
 def index(request):
     if request.method == "POST":
         form = IPCameraForm(request.POST)
