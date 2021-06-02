@@ -19,7 +19,7 @@ def index(request):
     cams = IPCamera.objects.all()
     return render(request, 'index.html',context={'cams':cams})
 
-
+@login_required
 def video_feed(request):
     record = False
     body_unicode = request.body.decode('utf-9')

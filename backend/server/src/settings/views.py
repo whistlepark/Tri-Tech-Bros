@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from settings.models import SettingField
 from settings.forms import SettingForm
 import json
 
+@login_required
 def settings(request):
     if(request.method == "POST"):
         form = SettingForm(request.POST,instance=SettingField)
