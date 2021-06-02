@@ -6,7 +6,7 @@ from django.http import HttpResponseBadRequest, HttpResponse, StreamingHttpRespo
 from camera import camera
 import json
 
-@login_reqiured
+@login_required
 def devices(request,device_num=0):
     if request.method == "POST":
         form = IPCameraForm(request.POST)
