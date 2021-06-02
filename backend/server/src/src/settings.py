@@ -33,7 +33,7 @@ except Exception as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','solarcam.info']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','solarcam.info','143.198.128.137']
 
 
 # Application definition
@@ -166,7 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 3
+SITE_ID = 6
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

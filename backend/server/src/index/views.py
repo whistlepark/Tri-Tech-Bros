@@ -17,7 +17,7 @@ def index(request):
 
     form = IPCameraForm()
     cams = IPCamera.objects.all()
-    return render(request, 'index.html',context={'cams':cams})
+    return render(request, 'index.html',context={'cams':cams, 'user':request.user})
 
 @login_required
 def video_feed(request):

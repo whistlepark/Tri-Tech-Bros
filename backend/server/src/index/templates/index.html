@@ -33,7 +33,7 @@
 
 
     <div class="viewBackground">
-        <h1>Welcome Back!</h1>
+	    <h1>Welcome Back {{ user|title }}!</h1>
         <div id="weather">
             <a class="weatherwidget-io" href="https://forecast7.com/en/32d72n117d16/san-diego/" data-label_1="SAN DIEGO" data-label_2="WEATHER" data-font="Verdana" data-icons="Climacons Animated" data-days="5" data-theme="original" data-basecolor="#182848" >SAN DIEGO WEATHER</a>
 
@@ -64,11 +64,11 @@
     </div>
 
     {% endblock %}
-    <!-- <footer>
+    <footer>
         <div class="footer-content">
             <h3>Tri-Tech Bros</h3>
         </div>
-    </footer> -->
+    </footer>
 
 </body>
 <script>
