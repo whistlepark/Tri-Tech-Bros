@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function onLoad(){
 	var devicesForm = document.getElementById('addDevice');
 	var canBtn = document.getElementById('cancel');

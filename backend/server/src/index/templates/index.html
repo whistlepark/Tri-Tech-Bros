@@ -9,7 +9,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %} Home Security {% endblock %}</title>
-        <link rel="stylesheet" href="{% static '/index/css/index.css' %}"> {% endblock %}
+        <link rel="stylesheet" href="{% static '/index/css/index.css' %}"> 
+        <script src="{% static 'index/js/index.js' %}"></script>
+        {% endblock %}
+        {% block head_ex %}
+        {% endblock %}
     </head>
 
 

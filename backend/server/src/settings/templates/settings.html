@@ -1,16 +1,12 @@
-{% extends "index.html" %} {% load static %} {% load camera_extras %}
-<!DOCTYPE html>
-<html>
+{% extends "index.html" %} 
+{% load static %}
+{% load camera_extras %}
 
-<head>
-    {% block head %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block head_ex %}
     <link rel="stylesheet" type="text/css" href="{% static 'settings/css/settings.css' %}">
     <script type="text/javascript" src="{% static 'settings/js/devices.js' %}"></script>
-    <title>{% block title %} Devices {% endblock %} </title>
-    {% endblock %}
-</head>
+{% endblock %}
+    {% block title %} Devices {% endblock %}
 
 {% block body %}
 
@@ -143,24 +139,10 @@
                             value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
                 </form> -->
 
-            
-
-
-
-
-
         </div>
         {% endfor %}
         {% endif %}
     </div>
 </div>
-
-
-
-
 {% endblock %}
 
-
-
-
-</html>

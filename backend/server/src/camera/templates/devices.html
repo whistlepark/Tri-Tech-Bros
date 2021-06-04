@@ -1,17 +1,11 @@
 {% extends "index.html" %} {% load static %} {% load camera_extras %}
-<!DOCTYPE html>
-<html>
 
-<head>
-    {% block head %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block head_ex %}
     <link rel="stylesheet" type="text/css" href="{% static 'camera/css/camera.css' %}">
     <script type="text/javascript" src="{% static 'camera/js/devices.js' %}"></script>
-    <title>{% block title %} Devices {% endblock %} </title>
-    {% endblock %}
-</head>
+{% endblock %}
 
+{% block title %} Devices {% endblock %} 
 {% block body %}
 
 <dialog id="addDevice">
@@ -21,11 +15,8 @@
             <input class="btn" id="submit" type="submit" value="Add Device">
             <input class="btn" id="cancel" type="submit" value="cancel">
         </div>
-
     </form>
 </dialog>
-
-
 
 <div class="viewBackground">
     <div id="camOptions">
@@ -71,12 +62,5 @@
     </div>
 </div>
 
-
-
-
 {% endblock %}
 
-
-
-
-</html>
