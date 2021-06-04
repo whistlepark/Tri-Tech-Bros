@@ -13,14 +13,16 @@ import json
 
 @login_required
 def index(request):
+    curr_user = User.objects.get(username=request.user)
     if request.method == "POST":
         form = IPCameraForm(request.POST)
         if not form.is_valid():
             return HttpResponseBadRequest()
-        form.save()
-
+        new_cam = form.save(commit=False)
+        new_cam.user_id = curr_user.id
+        new_cam.save()
     form = IPCameraForm()
-    cams = IPCamera.objects.all()
+    cams = IPCamera.objects.filter(user_id=curr_user.id)
     return render(request, 'index.html',context={'cams':cams, 'user':request.user})
 
 @login_required

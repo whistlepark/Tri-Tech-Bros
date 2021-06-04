@@ -30,13 +30,13 @@
         {% if cams|length > 0 %} {% for cam in cams %}
         <div class="stream_holder">
             <h3 class="camName">{{ cam.location }}</h3>
-            <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
-            <img class="camView" src="{% static 'camera/media/lol.png' %}">
+            <img class="camView" src="{{ cam.pk|prepend:"monitor/" }}">
+            <!--<img class="camView" src="{#% static 'camera/media/lol.png' %#}">-->
             <div class="btnBar">
-                <!--<form  action="{{ cam.pk|prepend:"record/" }}" method="POST">
+                <form  action="{{ cam.pk|prepend:"record/" }}" method="POST">
                     {% csrf_token %}
                     <input class="btn" type="submit" id={{ cam.pk }} value="Record">
-                </form>-->
+                </form>
 
                 <form action="{{ cam.pk|prepend:"remove/" }}" method="POST">
                     {% csrf_token %}
@@ -47,8 +47,7 @@
                 <form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
                     {% csrf_token %}
                     <label for="{{ cam.pk|prepend:"featured_" }}" value="Featured">
-                    <input class="btn" type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}"
-                            value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
+                    <input class="btn" type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}" value="{% if cam.featured %}Remove Featured{% else %}Make Featured{% endif %}">
                 </form>
 
 

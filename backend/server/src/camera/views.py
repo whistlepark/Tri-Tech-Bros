@@ -27,7 +27,7 @@ def devices(request,device_num=0):
 def video_feed(request,pk):
     camObj = IPCamera.objects.get(pk=pk)
     #return HttpResponse(json.dumps({'IP':camObj.IP,'Location':camObj.location}))
-    return StreamingHttpResponse(camera.start_thread(pk),content_type='multipart/x-mixed-replace; boundary=frame')
+    return StreamingHttpResponse(camera.gen_frames(pk),content_type='multipart/x-mixed-replace; boundary=frame')
 
 @login_required
 def record(request,pk):

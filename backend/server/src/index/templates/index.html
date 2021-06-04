@@ -16,9 +16,6 @@
         {% endblock %}
     </head>
 
-
-
-
     <body>
         {% block nav-bar %}
         <div class="topnav">
@@ -37,7 +34,6 @@
         </div>
         {% endblock %} {% block body %}
 
-
         <div class="viewBackground">
             <h1>Welcome Back {{ user|title }}!</h1>
             <div id="weather">
@@ -55,7 +51,7 @@
                     <!-- we should add titles to each view -->
                     <h3 class="camName">{{ cam.location }}</h3>
 
-                    <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
+                    <!-- <img class="camView" src="{#{ cam.pk|prepend:"monitor/" }#}"> -->
                     <img class="camView" src="{% static 'index/media/lol.png' %}">
 
 

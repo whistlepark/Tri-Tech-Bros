@@ -6,6 +6,6 @@ class UserSettingForm(ModelForm):
 
     class Meta:
         model = UserSettings
-        fields = ('key','value',)
+        fields = ('value',)
         # exclude = ('key',)
         
