@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from settings.models import SettingField
 from settings.forms import SettingForm
 import json
+# from ..camera import Camera_API
+# from ..camera.models import IPCamera
 
 @login_required
 def settings(request):
@@ -17,3 +19,9 @@ def settings(request):
     form = SettingForm(instance=SettingField)
 
     return render(request, 'settings.html', {'fields':settingObjs,'settingForm':form})
+
+
+@login_required
+def ptz_up(request, ip):
+    camObj = IPCamera.objects.get(pk=pk)
+    Camera_API(camObj.host, camObj.port, camObj.user, camObj.password)

@@ -6,3 +6,5 @@ class IPCamera(models.Model):
     record = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
 
+
+

@@ -3,8 +3,10 @@ import requests
 import re
 
 class Camera_API(object):
-    def __init__(self, host, user, password, port=80):
+    def __init__(self, host, user='default', password='default', port=80):
         self.camera = AmcrestCamera(host, port, user, password).camera
+        self.camera.modify_password('admin','newpass','default')
+        self.change_ip('192.168.1.20')
 
     def change_ip(self, new_ip, subnet_mask='255.255.255.0'):
         ret = self.camera.command(
