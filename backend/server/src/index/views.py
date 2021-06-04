@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, StreamingHttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -13,6 +13,7 @@ import json
 
 @login_required
 def index(request):
+    curr_user = User.objects.get(username=request.user)
     if request.method == "POST":
         form = IPCameraForm(request.POST)
         if not form.is_valid():
@@ -20,7 +21,8 @@ def index(request):
         form.save()
 
     form = IPCameraForm()
-    cams = IPCamera.objects.all()
+    cams = IPCamera.objects.filter(user_id=curr_user.id)
+    print(cams)
     return render(request, 'index.html',context={'cams':cams, 'user':request.user})
 
 @login_required
