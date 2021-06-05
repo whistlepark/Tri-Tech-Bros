@@ -5,139 +5,135 @@
 {% block head_ex %}
 <link rel="stylesheet" type="text/css" href="{% static 'settings/css/settings.css' %}">
 <script type="text/javascript" src="{% static 'settings/js/devices.js' %}"></script>
+<script>
+    function post(id) {
+        var url = id;
+        console.log(url);
+        fetch(url).then(function(response) {
+            response.text().then(function(text) {
+                console.log(text);
+            });
+        });
+    }
+</script>
 {% endblock %}
 {% block title %} Devices {% endblock %}
 
 {% block body %}
 
-<dialog id="addDevice">
+<!--<dialog id="addDevice">
     <form action="/devices/" method="post">
         {% csrf_token %} {{ form }}
         <div id="diagBtns">
             <input class="btn" id="submit" type="submit" value="Add Device">
             <input class="btn" id="cancel" type="submit" value="cancel">
         </div>
-
     </form>
 </dialog>
-
+-->
 
 
 <div class="viewBackground">
     <div id="camOptions">
-        <h3 id="allCams">All Cameras</h3>
-        <input id="addDeviceBtn" type="image" src="{% static 'camera/media/plus.png' %}"></input>
+        <h3 id="allCams">Camera Settings</h3>
+        <!--<input id="addDeviceBtn" type="image" src="{% static 'camera/media/plus.png' %}"></input>-->
     </div>
-    <!--
-    <p>
-        <button id="edit_button" class="edit_button" popup="modalOne">edit</button>
-    </p>-->
+
     <div class="cameras">
 
         {% if cams|length > 0 %} {% for cam in cams %}
         <div class="stream_holder">
             <h3 class="camName">{{ cam.location }}</h3>
-            <!-- <img class="camView" src="{{ cam.pk|prepend:" monitor/ " }}"> -->
-            <img class="camView" src="{% static 'settings/media/lol.png' %}">
-            <button id="popEdit">Edit</button>
-
+            <img class="camView" src="{{ cam.pk|prepend:"/devices/monitor/" }}">
             <dialog id="editSettings" style="width: 80%;">
                 <form action="./{{cam.pk}}/edit" method="POST" class="center">
                     <h2>{{ cam.location }}</h2>
-                    <div>
-                        <table>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <th> </th>
-                                        <td><a href="#" class="ptz_button" onclick="post({{ cam.pk }}/this.id)"
-                                                id="up">&#8639;</a></td>
-                                        <th> </th>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#" class="ptz_button" onclick="post({{ cam.pk} }/this.id)"
-                                                id="ccw">&#8634;</a></td>
-                                        <td> </td>
-                                        <td><a href="#" class="ptz_button" onclick="post({{ cam.pk }}/this.id)"
-                                                id="cw">&#8635;</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td> </td>
-                                        <td><a href="#" class="ptz_button" onclick="post({{ cam.pk }}/this.id)"
-                                                id="down">&#8643;</a></td>
-                                        <td> </td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <p>Focus</p>
+                    <div id="settingsHolder">
+                        <img class="setView" src="{{ cam.pk|prepend:"/devices/monitor/" }}"
+                            style=" width:50%; margin-right: 10%;">
+                        <div id="controls" style="width:50%;">
+                            <div id='focus' style="width:50%;">
+                                <p>Focus</p>
+                                <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
+                                    name={{cam.pk}} style="width: 80%;">
+                            </div>
+
+
+                            <div id=serialNumber style="width:51%;">
+                                <p style="float:left"> Serial Number</p>
+                                <!--{{ cam.sn }}-->
+                                <p style="float:right" class="SN" type="text" name="SN">{{ cam.sn }}</p>
+                            </div>
+
+                            <div id="ip" style="width:50%;">
+                                <p style="float:left">IP Address</p>
+                                <input style="float:right" class="IP" type="text" name="IP" value={{cam.ip}}>
+                            </div>
+
+
+                            <div id='hardware' style="width:51%;">
+                                <p> Hardware Version</p>
+                                <p class="HW" type="text">{{cam.hw}}</p>
+                            </div>
+
+                            <div id='dhcp' style="width:50%;">
+                                <p style="float:left" class="DHCP" type="text">DHCP</p>
+                                <select style="float:right">
+                                    <option id="True">True</option>
+                                    <option id="False">False</option>
+                                </select>
+
+                            </div>
+
+
+                            <div id='notes' style="width:51%;">
+                                <span>Notes</span>
+                                <div>
+                                    <textarea rows="4"></textarea>
+                                </div>
+                            </div>
+
+
+                            <table>
+                                <td>
+                                    <table style="width:10%">
+                                        <tr>
+                                            <th> </th>
+                                            <td><a style="background-color:cornflowerblue; color:#182848; padding: 5px; font-size:15px;"
+                                                    href="#" class="ptz_button" id="up">&#8639;</a>
+                                            </td>
+                                            <th> </th>
+                                        </tr <tr>
+                                        <td><a style="background-color:cornflowerblue; color:#182848; padding: 5px; font-size:15px;"
+                                                href="#" class="ptz_button" id="ccw">&#8634;</a>
                                         </td>
-                                        <td>
-                                            <div class="slidecontainer">
-                                                <input type="range" min="1" max="100" value="50" class="slider"
-                                                    id="myRange" name={{ cam.pk }}>
-                                            </div>
+                                        <td> </td>
+                                        <td><a style="background-color:cornflowerblue; color:#182848; padding: 5px; font-size:15px"
+                                                href="#" class="ptz_button" id="cw">&#8635;</a>
                                         </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </table>
-                        <table>
-                            <tr>
-                                <td>
-                                    <p class="SN" type="text" name="SN"> {{ cam.sn }}</p>
-                                    <p> Serial Number</p>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td><a style="background-color:cornflowerblue; color:#182848; padding: 5px; font-size:15px"
+                                                    href="#" class="ptz_button" id="down">&#8643;</a>
+                                            </td>
+                                            <td> </td>
+                                        </tr>
+                                    </table>
                                 </td>
-                                <td> </td>
-                                <td>
-                                    <input class="IP" type="text" name="IP" value={{ cam.ip }}>
-                                    <p>IP Address</p>
-                                </td>
-                            <tr>
-                                <td>
-                                    <p class="HW" type="text">{{ cam.hw }}</p>
-                                    <p> Hardware Version</p>
-                                </td>
-                                <td> </td>
-                                <td>
-                                    <select>
-                                        <option id="True">True</option>
-                                        <option id="False">False</option>
-                                    </select>
-                                    <p class="DHCP" type="text">DHCP</p>
-                                </td>
-                            </tr>
+                            </table>
+                            <button id='apply' style="width:50%" type="submit" method="POST">Apply</button>
+                        </div>
+
+
                     </div>
-                    </table>
-                    <span>Notes</span>
-                    <div>
-                        <textarea rows="4"></textarea>
-                    </div>
-                    <button type="submit" method="POST">Apply</button>
+
                 </form>
+
             </dialog>
-
-            <!--<form  action="{{ cam.pk|prepend:"record/" }}" method="POST">
-                    {% csrf_token %}
-                    <input class="btn" type="submit" id={{ cam.pk }} value="Record">
-                </form>-->
-
-            <!-- <form action="{{ cam.pk|prepend:"remove/" }}" method="POST">
-                    {% csrf_token %}
-                    <input class="btn" type="submit" id="{{ cam.pk|prepend:"remove_" }}" value="Remove">
-                </form>
-
-
-                <form action="{{ cam.pk|prepend:"featured/" }}" method="POST">
-                    {% csrf_token %}
-                    <label for="{{ cam.pk|prepend:"featured_" }}" value="Featured">
-                    <input class="btn" type="submit" name="{{ cam.pk|prepend:"featured_" }}" id="{{ cam.pk|prepend:"featured_" }}"
-                            value="{% if cam.featured %}Make Featured{% else %}Remove Featured{% endif %}">
-                </form> -->
-
+            <div class="btnBar">
+                <button id="popEdit" class="btn">Edit</button>
+            </div>
         </div>
         {% endfor %}
         {% endif %}

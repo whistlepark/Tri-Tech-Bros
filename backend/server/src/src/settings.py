@@ -166,6 +166,44 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+#LOGGING = {
+#    'version': 1,
+#    # Version of logging
+#    'disable_existing_loggers': False,
+
+#    'filters':{
+#        #information regarding filters
+#    },
+
+#    'formatters':{
+#        '<formatter_name>':{
+#            'format': '{levelname} {message}',
+#            'style': '{',
+#        }
+#    },
+
+#    'handlers': {
+#        'file': {
+#            'level': 'DEBUG',
+#            'class': 'logging.FileHandler',
+#            'filename': '.logs/log_file.log',
+#            'formatter':'Simple_Format'
+#        },
+
+#        'console': {
+#            'level':'DEBUG',
+#            'class':'logging.StreamHandler',
+#        },
+#    },
+
+#    'loggers': {
+#        'django': {
+#            'handlers': ['file', 'console'],
+#            'level': 'DEBUG',
+#        },
+#    },
+#}
+
 SITE_ID = 4
 
 LOGIN_REDIRECT_URL = '/'
@@ -173,3 +211,5 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET=True
 ACCOUNT_UNIQUE_EMAIL=True
 ACCOUNT_EMAIL_REQUIRED=True
+
+FILE_UPLOAD_MAX_MEMORY_SIZE=5621440

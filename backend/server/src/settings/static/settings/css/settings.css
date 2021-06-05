@@ -28,14 +28,14 @@ footer {
     padding: .1em;
     background: #C6CFDB;
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;*/
     color: #182848;
     text-align: center;
 }
 
 .footer-content {
     border-radius: 10px;
-    padding-left: 5em;
+    /*padding-left: 5em;*/
 }
 
 /* Add a color to the active/current link */
@@ -99,7 +99,7 @@ footer {
     text-decoration: none;
     height: 100%;
     width: 100%;
-    font-size: 3vh;
+    font-size: 2vh;
     color: #182848;
     font-weight: bold;
 }
@@ -159,7 +159,8 @@ h1 {
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 1.5em;
-
+    padding-bottom: 1.5em;
+    height: 100%;
 }
 
 
@@ -284,8 +285,6 @@ body {
   }
   input,
   textarea {
-    width: 90%;
-    padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #1c87c9;
     outline: none;
@@ -310,4 +309,43 @@ body {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  #controls{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      color: #182848 !important;
+  }
+
+  #serialNumber{
+      display: inline-block;
+      width: 51%;
+  }
+
+  #settingsHolder{
+      display: flex;
+
+
+  }
+
+  #setView{
+      width: 80%;
+  }
+
+  #editSettings{
+    background-color:  #C6CFDB;
+    border-radius: 2vh;
+    font-size: 2vh;
+  }
+
+  .center{
+    background-color:  #182848 !important;
+    border-radius: 2vh;
+    font-size: 2vh;
+  }
+
+  #foot{
+      margin:0 !important;
+      color: #182848;
   }
