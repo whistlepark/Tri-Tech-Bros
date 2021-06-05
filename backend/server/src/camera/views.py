@@ -45,7 +45,7 @@ def stop_record(request, pk):
 @login_required
 def remove(request,pk):
     if(request.method == "POST"):
-        camera.stop_thread(pk)
+        #camera.stop_thread(pk)
         IPCamera.objects.filter(pk=pk).delete()
     return HttpResponsePermanentRedirect('/devices')
 

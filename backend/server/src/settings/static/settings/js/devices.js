@@ -19,9 +19,15 @@ function onLoad(){
 
 }
 
+
+
 document.addEventListener('DOMContentLoaded', function(){
 	onLoad();
 });
+
+
+
+
 
 
 
@@ -86,12 +92,4 @@ document.addEventListener('DOMContentLoaded', function(){
 //	//}
 //});
 
-//function post(id){
-//	var url = id;
-//	console.log(url);
-//	fetch(url).then(function(response) {
-//		response.text().then(function(text) {
-//			console.log(text);
-//		});
-//	});
-//}
+

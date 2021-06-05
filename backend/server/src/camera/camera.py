@@ -2,6 +2,8 @@ import cv2
 from camera.models import IPCamera
 import datetime as dt
 import multiprocessing as Thread
+import logging
+logger = logging.getLogger(__name__)
 
 
 # # dirname = videos
@@ -15,12 +17,15 @@ import multiprocessing as Thread
 # cv2.destroyAllWindows()
 record = False
 
-
-
+logging.basicConfig( level=logging.DEBUG)
+logging.debug('Watch out!')
 
 def gen_frames(pk,record = False):  # generate frame by frame from camera
     camObj = IPCamera.objects.get(pk=pk)
     camera = cv2.VideoCapture("rtsp://admin:TriTechBr0s@"+camObj.IP)
+    #camera = cv2.VideoCapture("rtsp://admin:TriTechBr0s@209.65.187.212:551", cv2.CAP_FFMPEG)
+    #logging.debug(cv2.getBuildInformation())
+
     fourcc = cv2.VideoWriter_fourcc(*'MP4V')
     out = cv2.VideoWriter('/static/camera/media/'+camObj.location+'/'+str(dt.date.today()),fourcc,20.0,(640,480))
     while True:
@@ -52,9 +57,10 @@ def start_record(pk):
     camera_threads[pk].record = True
 
 def stop_thread(pk):
-    camera_threads[pk].run = False
+    #camera_threads[pk].run = False
+    #logger.info('------------- we made it ---------------')
     del camera_threads[pk]
-    
+
 class RTSPVideoWriterObject(object):
     def __init__(self, camObj, record):
         # Allows thread to be stopped

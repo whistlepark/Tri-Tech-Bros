@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 from settings.forms import UserSettingForm
 from camera.models import IPCamera
 import json
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig( level=logging.DEBUG)
+
+
 
 @login_required
 def settings(request):
@@ -19,5 +24,7 @@ def settings(request):
     settingObjs = UserSettings.objects.all()
     form = UserSettingForm(instance=UserSettings)
     cams = IPCamera.objects.filter(user_id=curr_user.id)
+    logging.debug(cams)
 
-    return render(request, 'settings.html', {'fields':settingObjs,'settingForm':form, 'cams':cams})
+
+    return render(request, 'settings.html', {'cams':cams,'fields':settingObjs,'settingForm':form})

@@ -283,8 +283,6 @@ body {
   }
   input,
   textarea {
-    width: 90%;
-    padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #1c87c9;
     outline: none;
@@ -309,4 +307,38 @@ body {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  #controls{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      color: #182848 !important;
+  }
+
+  #serialNumber{
+      display: inline-block;
+      width: 51%;
+  }
+
+  #settingsHolder{
+      display: flex;
+
+
+  }
+
+  #setView{
+      width: 80%;
+  }
+
+  #editSettings{
+    background-color:  #C6CFDB;
+    border-radius: 2vh;
+    font-size: 2vh;
+  }
+
+  .center{
+    background-color:  #182848 !important;
+    border-radius: 2vh;
+    font-size: 2vh;
   }
