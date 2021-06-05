@@ -21,11 +21,15 @@ html {
 
 footer {
     margin: auto;
-    width: 80%;
+    margin-top: 2em;
+    margin-left: 6vw;
+    border-radius: 35px 34px 0px 0px;
+    width: 87.5%;
+    padding: .1em;
     background: #C6CFDB;
     position: absolute;
     bottom: 0;
-    color: white;
+    color: #182848;
     text-align: center;
 }
 
@@ -33,7 +37,6 @@ footer {
     border-radius: 10px;
     padding-left: 5em;
 }
-
 
 /* Add a color to the active/current link */
 

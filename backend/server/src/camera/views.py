@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from camera.models import IPCamera
 from camera.forms import IPCameraForm
 from django.http import HttpResponseBadRequest, HttpResponse, StreamingHttpResponse,HttpResponsePermanentRedirect
@@ -8,14 +9,17 @@ import json
 
 @login_required
 def devices(request,device_num=0):
+    curr_user = User.objects.get(username=request.user)
     if request.method == "POST":
         form = IPCameraForm(request.POST)
         if not form.is_valid():
             return HttpResponseBadRequest()
-        form.save()
+        new_cam = form.save(commit=False)
+        new_cam.user_id = curr_user.id
+        new_cam.save()
 
     form = IPCameraForm()
-    cams = IPCamera.objects.all()
+    cams = IPCamera.objects.filter(user_id=curr_user.id)
 
     return render(request,'devices.html',context={'cams':cams,'form':form})
 
@@ -23,7 +27,7 @@ def devices(request,device_num=0):
 def video_feed(request,pk):
     camObj = IPCamera.objects.get(pk=pk)
     #return HttpResponse(json.dumps({'IP':camObj.IP,'Location':camObj.location}))
-    return StreamingHttpResponse(camera.start_thread(pk),content_type='multipart/x-mixed-replace; boundary=frame')
+    return StreamingHttpResponse(camera.gen_frames(pk),content_type='multipart/x-mixed-replace; boundary=frame')
 
 @login_required
 def record(request,pk):

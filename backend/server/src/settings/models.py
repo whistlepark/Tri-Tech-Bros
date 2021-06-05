@@ -1,7 +1,10 @@
 from django.db import models
-from camera.models import IPCamera
+from django.contrib.auth.models import User
+from allauth.socialaccount.models import SocialAccount
 
-class SettingField(models.Model):
-    key = models.TextField(max_length=20)
-    value = models.BooleanField()
-    camera = models.ForeignKey(to=IPCamera, on_delete=models.CASCADE)
+class UserSettings(models.Model):
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE)
+    Always_Record = models.BooleanField(default=False)
+
+class CameraSettings(models.Model):
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE)

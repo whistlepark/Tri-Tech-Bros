@@ -1,11 +1,11 @@
 from django.forms import ModelForm, BooleanField
-from settings.models import SettingField
+from settings.models import UserSettings, CameraSettings
 
-class SettingForm(ModelForm):
+class UserSettingForm(ModelForm):
     value = BooleanField()
 
     class Meta:
-        model = SettingField
-        fields = ('key','value',)
+        model = UserSettings
+        fields = ('value',)
         # exclude = ('key',)
         
