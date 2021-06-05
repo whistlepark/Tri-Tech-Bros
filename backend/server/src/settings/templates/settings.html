@@ -122,7 +122,7 @@
                                     </table>
                                 </td>
                             </table>
-                            <button style="width:50%" type="submit" method="POST">Apply</button>
+                            <button id='apply' style="width:50%" type="submit" method="POST">Apply</button>
                         </div>
 
 
@@ -131,8 +131,9 @@
                 </form>
 
             </dialog>
-            <button id="popEdit">Edit</button>
-
+            <div class="btnBar">
+                <button id="popEdit" class="btn">Edit</button>
+            </div>
         </div>
         {% endfor %}
         {% endif %}

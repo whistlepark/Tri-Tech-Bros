@@ -2,16 +2,16 @@ function onLoad(){
 	var devicesForm = document.getElementById('editSettings');
 	var canBtn = document.getElementById('cancel');
 	var pipEditBtn = document.getElementById('popEdit');
-	var subBtn = document.getElementById('submit');
+	var subBtn = document.getElementById('apply');
 
 	pipEditBtn.addEventListener('click', function (e) {
 		console.log(devicesForm)
 		devicesForm.showModal();
 	})
 
-	canBtn.addEventListener('click', function (e) {
-		devicesForm.close();
-	});
+	//canBtn.addEventListener('click', function (e) {
+	//	devicesForm.close();
+	//});
 
 	subBtn.addEventListener('click', function (e) {
 		devicesForm.close();
