@@ -8,6 +8,9 @@ class IPCamera(models.Model):
     location = models.CharField(max_length=30)
     record = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
+    username = models.CharField(max_length=20, default='admin')
+    password = models.CharField(max_length=20, default = 'admin')
+    systeminfo = models.CharField(max_length=200, default = 'NULL')
 
 
 

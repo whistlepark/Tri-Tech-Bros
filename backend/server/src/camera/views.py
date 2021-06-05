@@ -1,7 +1,9 @@
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from camera.models import IPCamera
+from camera import Camera_API
 from camera.forms import IPCameraForm
 from django.http import HttpResponseBadRequest, HttpResponse, StreamingHttpResponse,HttpResponsePermanentRedirect
 from camera import camera
@@ -16,7 +18,15 @@ def devices(request,device_num=0):
             return HttpResponseBadRequest()
         new_cam = form.save(commit=False)
         new_cam.user_id = curr_user.id
-        new_cam.save()
+        cam = new_cam.save()
+
+        # # Setup Camera
+        # if cam.ip == '192.168.1.108':
+        #     cam.ip = ''
+        # if cam.username == NULL:
+        #     cam.username = 'admin'
+        #     cam.password = 'TriTechBr0s'
+
 
     form = IPCameraForm()
     cams = IPCamera.objects.filter(user_id=curr_user.id)
